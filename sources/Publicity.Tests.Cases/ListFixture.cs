@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace Publicity.Tests.Cases
 {
@@ -22,6 +23,15 @@ namespace Publicity.Tests.Cases
                     new { value = 1 },
                     new { value = 2 }
                 }
+            };
+        }
+
+        public static object Generic()
+        {
+            return new List<object>
+            {
+                new { value = 1 },
+                new { value = 2 }
             };
         }
     }

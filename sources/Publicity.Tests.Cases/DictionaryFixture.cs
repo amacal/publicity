@@ -34,5 +34,14 @@ namespace Publicity.Tests.Cases
                 { "b", new { value = 2 } }
             };
         }
+
+        public static object Keys()
+        {
+            return new Hashtable
+            {
+                { new { id = 1 }, new { value = 1 } },
+                { new { id = 2 }, new { value = 2 } }
+            };
+        }
     }
 }

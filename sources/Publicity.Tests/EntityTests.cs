@@ -1,5 +1,4 @@
-﻿using System.Dynamic;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Publicity.Tests.Cases;
 
 namespace Publicity.Tests
@@ -13,6 +12,7 @@ namespace Publicity.Tests
             dynamic instance = sample.Open();
 
             Assert.That(instance, Is.Not.Null);
+            Assert.That(instance, Is.InstanceOf<OpenTarget>());
         }
 
         [Test]
@@ -22,6 +22,7 @@ namespace Publicity.Tests
             dynamic instance = sample.Open();
 
             Assert.That(instance.value, Is.EqualTo(1));
+            Assert.That(instance, Is.InstanceOf<OpenTarget>());
         }
 
         [Test]
@@ -31,6 +32,7 @@ namespace Publicity.Tests
             dynamic instance = sample.Open();
 
             Assert.That(instance.data.value, Is.EqualTo(1));
+            Assert.That(instance.data, Is.InstanceOf<OpenTarget>());
         }
 
         [Test]
@@ -39,7 +41,7 @@ namespace Publicity.Tests
             object sample = EntityFixture.Regular();
             dynamic instance = sample.Open();
 
-            Assert.That(instance, Is.Not.InstanceOf<DynamicObject>());
+            Assert.That(instance, Is.Not.InstanceOf<OpenTarget>());
         }
 
         [Test]
@@ -58,6 +60,16 @@ namespace Publicity.Tests
             dynamic instance = sample.Open();
 
             Assert.That(instance.data, Is.Null);
+        }
+
+        [Test]
+        public void DynamicEntityShouldReturnItsValue()
+        {
+            object sample = EntityFixture.Dynamic();
+            dynamic instance = sample.Open();
+
+            Assert.That(instance.value, Is.EqualTo(1));
+            Assert.That(instance, Is.Not.InstanceOf<OpenTarget>());
         }
     }
 }

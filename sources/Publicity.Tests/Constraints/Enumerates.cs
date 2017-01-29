@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using NUnit.Framework.Constraints;
 
-namespace Publicity.Tests
+namespace Publicity.Tests.Constraints
 {
     public static class Enumerates
     {

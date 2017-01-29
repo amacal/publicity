@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Publicity.Tests.Cases;
+using Publicity.Tests.Constraints;
 
 namespace Publicity.Tests
 {
@@ -13,6 +14,7 @@ namespace Publicity.Tests
 
             Assert.That(instance, Enumerates.To(2));
             Assert.That(instance, Has.All.InstanceOf<OpenTarget>());
+            Assert.That(instance, Is.InstanceOf<OpenTarget>());
         }
 
         [Test]
@@ -23,6 +25,18 @@ namespace Publicity.Tests
 
             Assert.That(instance.items, Enumerates.To(2));
             Assert.That(instance.items, Has.All.InstanceOf<OpenTarget>());
+            Assert.That(instance.items, Is.InstanceOf<OpenTarget>());
+        }
+
+        [Test]
+        public void QueryEnumerableShouldOpenAllItems()
+        {
+            object sample = EnumerableFixture.Query();
+            dynamic instance = sample.Open();
+
+            Assert.That(instance, Enumerates.To(2));
+            Assert.That(instance, Has.All.InstanceOf<OpenTarget>());
+            Assert.That(instance, Is.InstanceOf<OpenTarget>());
         }
     }
 }

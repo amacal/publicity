@@ -2,7 +2,7 @@
 
 namespace Publicity
 {
-    internal class OpenEnumerable : IEnumerable
+    internal class OpenEnumerable : IEnumerable, OpenTarget
     {
         private readonly IEnumerable instance;
 
@@ -17,6 +17,11 @@ namespace Publicity
             {
                 yield return item.Open();
             }
+        }
+
+        object OpenTarget.Instance
+        {
+            get { return instance; }
         }
     }
 }

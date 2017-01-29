@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Dynamic;
 
 namespace Publicity.Tests.Cases
 {
@@ -46,6 +47,25 @@ namespace Publicity.Tests.Cases
         private class RegularClass
         {
             public int value { get; set; }
+        }
+
+        public static object Dynamic()
+        {
+            return new DynamicClass();
+        }
+
+        private class DynamicClass : DynamicObject
+        {
+            public override bool TryGetMember(GetMemberBinder binder, out object result)
+            {
+                if (binder.Name == "value")
+                {
+                    result = 1;
+                    return true;
+                }
+
+                return base.TryGetMember(binder, out result);
+            }
         }
     }
 }

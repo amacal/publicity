@@ -3,7 +3,7 @@ using System.Dynamic;
 
 namespace Publicity
 {
-    internal class OpenList : DynamicObject, IEnumerable
+    internal class OpenList : DynamicObject, IEnumerable, OpenTarget
     {
         private readonly IList instance;
 
@@ -43,6 +43,11 @@ namespace Publicity
             {
                 yield return item.Open();
             }
+        }
+
+        object OpenTarget.Instance
+        {
+            get { return instance; }
         }
     }
 }

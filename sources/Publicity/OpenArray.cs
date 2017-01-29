@@ -4,7 +4,7 @@ using System.Dynamic;
 
 namespace Publicity
 {
-    internal class OpenArray : DynamicObject, IEnumerable
+    internal class OpenArray : DynamicObject, IEnumerable, OpenTarget
     {
         private readonly Array instance;
 
@@ -22,6 +22,10 @@ namespace Publicity
                     result = instance.Length;
                     return true;
 
+                case "Rank":
+                    result = instance.Rank;
+                    return true;
+
                 default:
                     return base.TryGetMember(binder, out result);
             }
@@ -29,9 +33,16 @@ namespace Publicity
 
         public override bool TryGetIndex(GetIndexBinder binder, object[] indexes, out object result)
         {
-            if (indexes.Length == 1 && indexes[0] is int)
+            if (indexes.Length == instance.Rank)
             {
-                result = instance.GetValue((int)indexes[0]).Open();
+                int[] indices = new int[instance.Rank];
+
+                for (int i = 0; i < instance.Rank; i++)
+                {
+                    indices[i] = (int)indexes[i];
+                }
+
+                result = instance.GetValue(indices).Open();
                 return true;
             }
 
@@ -44,6 +55,11 @@ namespace Publicity
             {
                 yield return item.Open();
             }
+        }
+
+        object OpenTarget.Instance
+        {
+            get { return instance; }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace Publicity.Tests.Cases
 {
@@ -25,6 +26,16 @@ namespace Publicity.Tests.Cases
             {
                 items = queue
             };
+        }
+
+        public static object Generic()
+        {
+            Queue<object> queue = new Queue<object>();
+
+            queue.Enqueue(new { value = 1 });
+            queue.Enqueue(new { value = 1 });
+
+            return queue;
         }
     }
 }

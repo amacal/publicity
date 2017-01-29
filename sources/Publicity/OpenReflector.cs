@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Dynamic;
+using System.Linq;
 
 namespace Publicity
 {
@@ -8,12 +10,19 @@ namespace Publicity
         public static OpenType Classify(object instance)
         {
             Type type = instance?.GetType();
+            Type[] exceptions = { typeof(string) };
 
             if (type == null)
                 return OpenType.Null;
 
+            if (exceptions.Contains(type))
+                return OpenType.Regular;
+
             if (type.IsArray)
                 return OpenType.Array;
+
+            if (typeof(DynamicObject).IsAssignableFrom(type))
+                return OpenType.Dynamic;
 
             if (typeof(IDictionary).IsAssignableFrom(type))
                 return OpenType.Dictionary;

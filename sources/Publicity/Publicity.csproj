@@ -39,7 +39,9 @@
     <Compile Include="OpenEnumerable.cs" />
     <Compile Include="OpenList.cs" />
     <Compile Include="OpenObject.cs" />
+    <Compile Include="OpenReflector.cs" />
     <Compile Include="OpenTarget.cs" />
+    <Compile Include="OpenType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OpenExtensions.cs" />
   </ItemGroup>

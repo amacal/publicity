@@ -3,7 +3,7 @@ using System.Dynamic;
 
 namespace Publicity
 {
-    internal class OpenDictionary : DynamicObject, IEnumerable
+    internal class OpenDictionary : DynamicObject, IEnumerable, OpenTarget
     {
         private readonly IDictionary instance;
 
@@ -38,7 +38,14 @@ namespace Publicity
         {
             if (indexes.Length == 1)
             {
-                result = instance[indexes[0]].Open();
+                object index = indexes[0];
+
+                if (index is OpenTarget)
+                {
+                    index = ((OpenTarget)index).Instance;
+                }
+
+                result = instance[index].Open();
                 return true;
             }
 
@@ -55,6 +62,11 @@ namespace Publicity
                     Value = entry.Value.Open()
                 };
             }
+        }
+
+        object OpenTarget.Instance
+        {
+            get { return instance; }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 
 namespace Publicity.Tests.Cases
 {
@@ -15,6 +16,11 @@ namespace Publicity.Tests.Cases
             {
                 items = Generate()
             };
+        }
+
+        public static object Query()
+        {
+            return Generate().AsQueryable();
         }
 
         private static IEnumerable Generate()

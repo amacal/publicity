@@ -9,6 +9,7 @@
         Collection,
         Enumerable,
         Anonymous,
+        Dynamic,
         Regular
     }
 }
