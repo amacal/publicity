@@ -25,13 +25,13 @@ Target "BuildApp" (fun _ ->
 )
 
 Target "BuildTests" (fun _ ->
-    !! "sources/**/*tests*.csproj"
+    !! "sources/**/*tests.csproj"
       |> MSBuildDebug "./build/tests" "Build"
       |> Log "Tests-Build-Output: "
 )
 
 Target "ExecuteTests" (fun _ ->
-    !! ("build/tests/*Tests*.dll")
+    !! ("build/tests/*Tests.dll")
         |> NUnit3 (fun p ->
             { p with
                 ToolPath = findToolInSubPath "nunit3-console.exe" "build" })

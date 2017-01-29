@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="nunit.framework, Version=3.6.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -37,10 +38,20 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HelloTests.cs" />
+    <Compile Include="ArrayTests.cs" />
+    <Compile Include="CollectionTests.cs" />
+    <Compile Include="DictionaryTests.cs" />
+    <Compile Include="EntityTests.cs" />
+    <Compile Include="EnumerableTests.cs" />
+    <Compile Include="Enumerates.cs" />
+    <Compile Include="ListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Publicity.Tests.Cases\Publicity.Tests.Cases.csproj">
+      <Project>{2e9a608c-d970-456f-b5ba-957cd8d7a6b8}</Project>
+      <Name>Publicity.Tests.Cases</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Publicity\Publicity.csproj">
       <Project>{1f6b5007-4cbd-414b-a0e8-1c91af35a677}</Project>
       <Name>Publicity</Name>
